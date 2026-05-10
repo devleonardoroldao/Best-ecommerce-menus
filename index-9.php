@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AliExpress SaaS Global 2026</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --ali-orange: linear-gradient(90deg, #ff4e00 0%, #ec008c 100%);
+            --ali-dark: #191919;
+            --ali-gray: #f2f2f2;
+            --ali-border: rgba(0,0,0,0.08);
+        }
+
+        body { 
+            background-color: var(--ali-gray); 
+            font-family: 'Inter', sans-serif;
+            color: var(--ali-dark);
+            padding-top: 155px;
+            padding-bottom: 90px;
+        }
+
+        /* PREMIUM HEADER */
+        .ali-header {
+            background: white;
+            position: fixed; top: 0; width: 100%; 
+            z-index: 1040; 
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .ali-container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+
+        .header-main {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center; 
+            gap: 20px;
+        }
+
+        .ali-logo { 
+            font-size: 26px; font-weight: 800; color: #ff4e00; 
+            letter-spacing: -1px; text-decoration: none;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* BUSCA */
+        .search-bar-2026 {
+            width: 100%; max-width: 450px; display: flex;
+            background: #fff; border: 2px solid #ff4e00;
+            border-radius: 50px; padding: 4px;
+        }
+        .search-bar-2026 input {
+            border: none; outline: none; padding: 8px 20px;
+            width: 100%; border-radius: 50px; font-size: 15px;
+        }
+        .btn-ali-search {
+            background: var(--ali-orange);
+            color: white; border: none; padding: 8px 25px;
+            border-radius: 50px; font-weight: 600;
+        }
+
+        /* ACTIONS */
+        .ali-actions { display: flex; align-items: center; gap: 5px; justify-content: flex-end; }
+        .action-item {
+            display: flex; flex-direction: column; align-items: center;
+            color: var(--ali-dark); text-decoration: none;
+            min-width: 60px; font-size: 11px; font-weight: 600; cursor: pointer;
+            transition: 0.2s; border: none; background: transparent;
+        }
+        .action-item i { font-size: 22px; margin-bottom: 2px; }
+
+        .cart-badge {
+            position: absolute; top: -5px; right: 10px;
+            background: var(--ali-orange); color: white;
+            border-radius: 50%; width: 18px; height: 18px;
+            font-size: 11px; display: flex; align-items: center; justify-content: center;
+            font-weight: 800; border: 2px solid white;
+        }
+
+        /* NAVEGAÇÃO HORIZONTAL DESKTOP + DROPDOWNS */
+        .ali-nav-bottom { margin-top: 15px; display: flex; gap: 10px; align-items: center; justify-content: center; }
+        
+        .nav-item-saas { position: relative; padding: 10px 0; }
+        .nav-link-saas { 
+            text-decoration: none; color: #555; font-size: 14px; 
+            font-weight: 600; padding: 8px 15px; border-radius: 20px;
+            transition: 0.3s;
+        }
+        .nav-item-saas:hover .nav-link-saas { background: #f8f9fa; color: #ff4e00; }
+
+        /* Estilo do Dropdown */
+        .saas-dropdown {
+            position: absolute; top: 100%; left: 0; background: white;
+            min-width: 220px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            opacity: 0; visibility: hidden; transform: translateY(10px);
+            transition: 0.3s; z-index: 100; padding: 10px 0;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .nav-item-saas:hover .saas-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+        .saas-dropdown a {
+            display: block; padding: 10px 20px; color: #666; 
+            text-decoration: none; font-size: 13px; font-weight: 500;
+        }
+        .saas-dropdown a:hover { background: #fff5f0; color: #ff4e00; }
+
+        /* BOTTOM NAV MOBILE */
+        .bottom-nav {
+            position: fixed; bottom: 20px; left: 20px; right: 20px;
+            background: rgba(25, 25, 25, 0.95); backdrop-filter: blur(12px);
+            border-radius: 25px; display: none; justify-content: space-around;
+            padding: 12px; z-index: 1050; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav-tab {
+            color: #999; text-decoration: none; display: flex;
+            flex-direction: column; align-items: center; font-size: 10px; border: none; background: none;
+            position: relative;
+        }
+        .nav-tab.active { color: #ff4e00; }
+        .nav-tab i { font-size: 20px; margin-bottom: 2px; }
+
+        /* MODAIS */
+        .offcanvas-2026 { border-radius: 24px 0 0 24px !important; }
+        .offcanvas-start.offcanvas-2026 { border-radius: 0 24px 24px 0 !important; }
+        .menu-item-main { font-weight: 600; padding: 15px 20px; border-bottom: 1px solid #f0f0f0; display: block; text-decoration: none; color: var(--ali-dark); }
+        .submenu-box { background: #f9f9f9; padding: 10px 0; }
+        .submenu-link { padding: 8px 50px; display: block; text-decoration: none; color: #666; font-size: 14px; }
+
+        @media (max-width: 991px) {
+            body { padding-top: 145px; }
+            .ali-nav-bottom, .ali-actions { display: none; }
+            .bottom-nav { display: flex; }
+            .header-main { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+            .ali-logo { order: 1; width: 100%; justify-content: center; font-size: 22px; }
+            .search-bar-2026 { order: 2; width: 100%; max-width: 100%; height: 52px; }
+            .btn-ali-search span { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="ali-header">
+    <div class="ali-container">
+        <div class="header-main">
+            <div class="search-bar-2026">
+                <input type="text" placeholder="I'm shopping for...">
+                <button class="btn-ali-search"><i class="bi bi-search"></i></button>
+            </div>
+
+            <a href="#" class="ali-logo">AliExpress<span style="color: #333">.SaaS</span></a>
+            
+            <div class="ali-actions">
+                <button class="action-item" data-bs-toggle="offcanvas" data-bs-target="#modalMenu"><i class="bi bi-list"></i><span>Menu</span></button>
+                <button class="action-item"><i class="bi bi-lightning-charge"></i><span>Deals</span></button>
+                <button class="action-item" data-bs-toggle="offcanvas" data-bs-target="#modalUser"><i class="bi bi-person"></i><span>Account</span></button>
+                <button class="action-item" data-bs-toggle="offcanvas" data-bs-target="#modalCarrinho">
+                    <div class="position-relative"><i class="bi bi-cart3"></i><span class="cart-badge">2</span></div>
+                    <span>Cart</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="ali-nav-bottom d-none d-lg-flex">
+            <div class="nav-item-saas">
+                <a href="#" class="nav-link-saas" data-bs-toggle="offcanvas" data-bs-target="#modalMenu"><i class="bi bi-grid-3x3-gap me-2"></i>Categories</a>
+            </div>
+            
+            <div class="nav-item-saas">
+                <a href="#" class="nav-link-saas">Electronics <i class="bi bi-chevron-down ms-1 small"></i></a>
+                <div class="saas-dropdown">
+                    <a href="#">Smartphones</a>
+                    <a href="#">Laptops</a>
+                    <a href="#">Accessories</a>
+                </div>
+            </div>
+
+            <div class="nav-item-saas">
+                <a href="#" class="nav-link-saas">Fashion <i class="bi bi-chevron-down ms-1 small"></i></a>
+                <div class="saas-dropdown">
+                    <a href="#">Men's Wear</a>
+                    <a href="#">Women's Wear</a>
+                    <a href="#">Jewelry</a>
+                </div>
+            </div>
+
+            <div class="nav-item-saas">
+                <a href="#" class="nav-link-saas">Home & Garden</a>
+            </div>
+
+            <div class="nav-item-saas">
+                <a href="#" class="nav-link-saas" style="color: #ff4e00;">SuperDeals</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav class="bottom-nav">
+    <button class="nav-tab active"><i class="bi bi-house-door"></i>Home</button>
+    <button class="nav-tab" data-bs-toggle="offcanvas" data-bs-target="#modalMenu"><i class="bi bi-grid"></i>Categories</button>
+    <button class="nav-tab" data-bs-toggle="offcanvas" data-bs-target="#modalCarrinho">
+        <div class="position-relative">
+            <i class="bi bi-cart3"></i>
+            <span class="cart-badge" style="right: -8px; top: -8px;">2</span>
+        </div>
+        Cart
+    </button>
+    <button class="nav-tab" data-bs-toggle="offcanvas" data-bs-target="#modalUser"><i class="bi bi-person"></i>Account</button>
+</nav>
+
+<div class="offcanvas offcanvas-start offcanvas-2026" id="modalMenu" style="width: 320px;">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="fw-bold m-0">Explore Categories</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+        <a href="#sub1" class="menu-item-main d-flex justify-content-between" data-bs-toggle="collapse">
+            <span><i class="bi bi-cpu me-3"></i>Consumer Electronics</span>
+            <i class="bi bi-chevron-down small text-muted"></i>
+        </a>
+        <div class="collapse submenu-box" id="sub1">
+            <a href="#" class="submenu-link">Smartphones</a>
+            <a href="#" class="submenu-link">Laptops & PC</a>
+        </div>
+        <a href="#" class="menu-item-main"><i class="bi bi-smartwatch me-3"></i>Watches</a>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-end offcanvas-2026" id="modalCarrinho" style="width: 380px;">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="fw-bold m-0">Shopping Cart (2)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="p-3">
+            <div class="d-flex gap-3 mb-4 p-2 bg-light rounded-4">
+                <div style="width:60px; height:60px; background:#ddd; border-radius:10px"></div>
+                <div>
+                    <h6 class="mb-1 fw-bold" style="font-size:13px">Global Tech Smartwatch Gen 4</h6>
+                    <div class="text-danger fw-bold">$24.50</div>
+                </div>
+            </div>
+            <button class="btn btn-dark w-100 py-3 rounded-pill fw-bold" style="background: var(--ali-orange); border:none">Checkout Now</button>
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-end offcanvas-2026" id="modalUser" style="width: 320px;">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="fw-bold m-0">Welcome</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body p-4 text-center">
+        <i class="bi bi-person-circle display-4 text-secondary mb-4"></i>
+        <button class="btn btn-primary w-100 py-3 rounded-pill fw-bold" style="background: var(--ali-orange); border: none;">Sign In</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
